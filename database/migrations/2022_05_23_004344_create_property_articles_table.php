@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('isObligatory')->default(1);
-            $table->foreignId('type_article_id');
+            $table->foreignId('type_article_id')->constrained();
         });
 
         Schema::enableForeignKeyConstraints();

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->double('payrollAmount');
             $table->dateTime('paymentDate');
-            $table->foreignId('user_id');
-            $table->foreignId('location_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('location_id')->constrained();
         });
 
         Schema::enableForeignKeyConstraints();

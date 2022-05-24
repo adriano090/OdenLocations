@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('article_property', function (Blueprint $table) {
-            $table->foreignId('article_id');
-            $table->foreignId('property_article_id');
+            $table->foreignId('article_id')->constrained();
+            $table->foreignId('property_article_id')->constrained();
         });
 
         Schema::enableForeignKeyConstraints();

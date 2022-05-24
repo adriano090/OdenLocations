@@ -20,8 +20,11 @@ return new class extends Migration
             $table->string('photo');
             $table->string('description');
             $table->boolean('isAvailable')->default(1);
+            $table->foreignId('type_article_id')->constrained();
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -31,6 +34,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('articles', function(Blueprint $table){
+            $table->dropForeign('type_article_id');
+        });
         Schema::dropIfExists('articles');
     }
 };

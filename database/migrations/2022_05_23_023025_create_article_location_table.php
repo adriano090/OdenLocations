@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_articles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('article_location', function (Blueprint $table) {
+            $table->foreignId('article_id')->constrained();
+            $table->foreignId('location_id')->constrained();
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -27,6 +29,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_articles');
+        Schema::table('article_location', function(Blueprint $table){
+            $table->dropForeign(['article_id', 'location_id']);
+        });
+
+        Schema::dropIfExists('article_location');
     }
 };
